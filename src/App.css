@@ -1,38 +1,87 @@
 .App {
-  text-align: center;
+  max-width: 1920px;
+  margin: 0 auto;;
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) 3fr;
+  gap: 20px;
+  box-sizing: border-box;
+  height: calc(100vh - 40px);
+  margin-top: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App p {
+  padding-left: 20px;
+  font-size: 18px;
+  text-decoration: underline;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.App__Container{
+  width: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: 1fr 100px 1fr;
+  gap: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.App__LeftBar{
+  width: 100%;
+  box-sizing: border-box;
+  background-color:whitesmoke;
+}
+
+.App__Container__Form {
+  width: calc(100% - 40px);
+  background-color: rgb(232, 236, 240);
+  display: grid;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  grid-template-columns: 5fr 1fr;
+  gap: 20px;
+  padding: 0 20px 0 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.App__Container__Form input {
+  height: 40px;
+  text-align: center;
+  font-size: 24px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+
+
+.App__Container__Content {
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+.App__Container__Content div {
+  
+  box-sizing: border-box;
+  background-color:whitesmoke;
+}
+
+@media only screen and (max-width: 1920px) {
+  .App {
+    width: 98%;
   }
 }
+
+@media only screen and (max-width: 992px) {
+  .App {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(100px, 1fr) 3fr;
+    width: 95%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .App__Container__Content { 
+    grid-template-columns: 1fr;
+    grid-template-rows: 4fr 2fr;
+    
+  }
+}
+
+
+
