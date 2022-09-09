@@ -1,8 +1,9 @@
 
-import Map from "../map_constructor/map"
+import Map from "./map_constructor/map"
 import ReactCountryFlag from "react-country-flag"
+import styles from './user_location.module.css'
 
-const UserLocationIP = ({state, search, myLoc}) => {
+const UserLocationIP = ({state, myLoc}) => {
     
     return (
     <>
@@ -11,15 +12,15 @@ const UserLocationIP = ({state, search, myLoc}) => {
         </div>
         <div>
             <div>
-            <p>Information about user location</p>
+            <p>{myLoc ? 'Information about Your location' : 'Information about last Search'}</p>
             {   
-                search && state.newIp && !state.wrongIp || myLoc
+                state.newIp || myLoc
                 ? state.userLocation.map((el, index) => (
                     index === 0 && <div key={index}>
-                        <p>IP: {el.myIp}</p>
-                        <p>Country: {state.myCountryCode ? <ReactCountryFlag countryCode={el.myCountryCode}/> : ''} {el.myCountry}</p>
-                        <p>City: {el.myCity}</p>
-                        
+                        <p className={styles.App__Container__Content__line}>IP: <span>{el.myIp}</span></p>
+                        <p className={styles.App__Container__Content__line}>Country: <span>{el.myCountry}</span></p>
+                        <p className={styles.App__Container__Content__line}>Flag: <span>{el.myCountryCode ? <ReactCountryFlag countryCode={el.myCountryCode}/> : '---------'}</span></p>
+                        <p className={styles.App__Container__Content__line}>City: <span>{el.myCity}</span></p>
                     </div>
                 ))
                 : <div></div>

@@ -1,0 +1,9 @@
+.App__Container__Content__line {
+    text-decoration: none!important;
+    font-weight: bold;
+}
+
+.App__Container__Content__line span {
+    text-decoration: none!;
+    font-weight: normal;
+}

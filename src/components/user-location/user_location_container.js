@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import UserLocationIP from "./user_location"
 import axios from "axios"
-import SearchingForm from "../searching_form/searching_form"
+import SearchingForm from "./searching_form/searching_form"
+import ListOfSearch from "./searching_list/searching_list"
 
-const UserLocationIpContainer = ({search, myLoc, list}) => {  
+const UserLocationIpContainer = () => {  
 const [state, setState] = useState (
     {
         userLocation: [],
@@ -11,16 +12,18 @@ const [state, setState] = useState (
         myLatitude: 0,
         myLongtitude: 0,
         newIp: '',
+        userRequest:[]
     }
   )
 
   const [text, setText] = useState('')
   console.log(state)
+  console.log(text)
   
   useEffect(
     () => {
       axios
-        .get(`http://api.ipstack.com/${state.newIp ? state.newIp : 'check'}?access_key=b1b1f92983f5893c53ffa1816c5a48be`)
+        .get(`http://api.ipstack.com/${state.newIp ? state.newIp : 'check'}?access_key=b1b1f92983f5893c53ffa1816c5a48b`)
         .then(response => {
             const myNewData = response.data
             const newState = {...state}
@@ -32,9 +35,11 @@ const [state, setState] = useState (
                         myIp: myNewData.ip, 
                         myCity: myNewData.city, 
                         myCountry: myNewData.country_name, 
-                        myCountryCode: myNewData.country_code
+                        myCountryCode: myNewData.country_code,
                         }
                     )
+                    newState.userRequest.unshift(newState.newIp)
+                    setText('')
                     newState.myLatitude = myNewData.latitude
                     newState.myLongtitude = myNewData.longitude
             } else {
@@ -42,28 +47,38 @@ const [state, setState] = useState (
                     {
                         myLatitude: 0, 
                         myLongtitude: 0,
-                        myIp: 'WRONG IP', 
+                        myIp: 'WRONG REQUEST', 
                         myCity: '-----------', 
                         myCountry: '----------', 
-                        myCountryCode: false
+                        myCountryCode: false,
+                        myRequest: newState.newIp
                     }
                 )
             }
+            newState.userRequest.unshift(newState.newIp)
             setState(newState)
             console.log(response)
             console.log(state)
             }
         )
-        .catch(error => {console.log('wrong IP')})
+        .catch(error => {
+            console.log('wrong IP')
+        })
     }, [state.newIp])
-
     return <>
-    {/* {list && state.newIp && state.userLocation.map((el, i) => <p key={i}>{`${i+1}. ${el.myIp}`}</p>)} */}
-    {search && <div className='App__Container__Form'>
-        <SearchingForm setText={setText} text={text} setState={setState} state={state}/>
-    </div>}
-    <div className='App__Container__Content'>
-          <UserLocationIP state={state} search={search} myLoc={myLoc} lat={state.myLatitude} lng={state.myLongtitude}/>
+    <div className='App__LeftBar'>
+        <ListOfSearch state={state} />
+    </div>
+    <div className='App__Container'>
+        <div className='App__Container__Content'>
+            <UserLocationIP state={state} myLoc={true} lat={state.myLatitude} lng={state.myLongtitude}/>
+        </div>
+        <div className='App__Container__Form'>
+            <SearchingForm setText={setText} text={text} setState={setState} state={state}/>
+        </div>
+        <div className='App__Container__Content'>
+            <UserLocationIP state={state} lat={state.myLatitude} lng={state.myLongtitude}/>
+        </div>
     </div>
     </>
 }
