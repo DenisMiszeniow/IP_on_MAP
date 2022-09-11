@@ -1,8 +1,7 @@
 
 import './App.css';
-import UserLocationIpContainer from './components/user-location/user_location_container';
+import Collector from './components/collector';
 
-
-const App = () => <div className="App"><UserLocationIpContainer/></div>
+const App = () => <div className="App"><Collector/></div>
 
 export default App;

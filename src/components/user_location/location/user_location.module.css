@@ -1,0 +1,42 @@
+  .App__Container__Content {
+    display: grid;
+    grid-template-columns: 4fr 2fr;
+    gap: 20px;
+    box-sizing: border-box;
+    grid-column-start: 2;
+    grid-column-end: 5;
+    min-height: 400px;
+  }
+  
+  .App__Container__Content div {
+    box-sizing: border-box;
+    background-color:whitesmoke;
+    
+  }
+
+.App__Container__Content__line {
+    text-decoration: none!important;
+    font-weight: bold;
+}
+
+.App__Container__Content__line span {
+    text-decoration: none!;
+    font-weight: normal;
+}
+
+
+/* --------------------- @MEDIA --------------- */
+
+@media only screen and (max-width: 992px) {
+  .App__Container__Content {
+    grid-column-start: 1;
+    grid-column-end: 2
+  }
+}
+
+  @media only screen and (max-width: 768px) {
+    .App__Container__Content { 
+      grid-template-columns: 1fr;
+      grid-template-rows: 2fr 2fr;
+    }
+  }

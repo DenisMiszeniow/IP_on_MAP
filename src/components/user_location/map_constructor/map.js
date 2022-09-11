@@ -22,7 +22,6 @@ const onLoad = useCallback(function callback(map) {
 const onUnmount = useCallback(function callback(map) {
     setMap(null)
 }, [])
-
   return isLoaded ? (
       <GoogleMap
         

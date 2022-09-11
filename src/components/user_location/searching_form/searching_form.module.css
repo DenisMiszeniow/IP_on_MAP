@@ -1,0 +1,29 @@
+.App__Container__Form {
+    background-color: rgb(232, 236, 240);
+    display: grid;
+    align-items: center;
+    grid-template-columns: 5fr 1fr;
+    gap: 20px;
+    padding: 0 20px 0 20px;
+    grid-column-start: 2;
+    grid-column-end: 5;
+    height: 80px;
+    grid-row-start: 2;
+  }
+  
+  .App__Container__Form input {
+    height: 40px;
+    text-align: center;
+    font-size: 24px;
+  }
+
+  /*------------------------ @MEDIA -------------------*/
+
+  @media only screen and (max-width: 992px) {
+      .App__Container__Form {
+          grid-column-start: 1;
+          grid-column-end: 2;
+          grid-row-start: 2;
+          grid-row-end: 3;
+      }
+  }
