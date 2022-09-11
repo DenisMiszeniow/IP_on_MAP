@@ -1,3 +1,47 @@
+.App__Container{
+    width: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 1fr 100px 1fr;
+    gap: 20px;
+  }
+  
+  .App__LeftBar{
+    width: 100%;
+    box-sizing: border-box;
+    background-color:whitesmoke;
+    overflow: auto;
+  }
+  
+  .App__Container__Form {
+    width: calc(100% - 40px);
+    background-color: rgb(232, 236, 240);
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 5fr 1fr;
+    gap: 20px;
+    padding: 0 20px 0 20px;
+  }
+  
+  .App__Container__Form input {
+    height: 40px;
+    text-align: center;
+    font-size: 24px;
+  }
+  
+  .App__Container__Content {
+    display: grid;
+    grid-template-columns: 4fr 2fr;
+    gap: 20px;
+    box-sizing: border-box;
+  }
+  
+  .App__Container__Content div {
+    box-sizing: border-box;
+    background-color:whitesmoke;
+  }
+
 .App__Container__Content__line {
     text-decoration: none!important;
     font-weight: bold;
@@ -7,3 +51,26 @@
     text-decoration: none!;
     font-weight: normal;
 }
+
+
+/*---------------------- @MEDIA --------------------- */
+
+  
+  @media only screen and (max-width: 992px) {
+     .App__LeftBar {
+     grid-row-start: 2;
+     overflow: inherit;
+     height: auto;
+     display:flex;
+      flex-direction: column;
+      align-content: center;
+      background-color: transparent;
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .App__Container__Content { 
+      grid-template-columns: 1fr;
+      grid-template-rows: 2fr 2fr;
+    }
+  }

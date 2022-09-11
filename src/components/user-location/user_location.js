@@ -9,13 +9,15 @@ const UserLocationIP = ({state, myLoc}) => {
     <>
         <div>
               <Map lat={state.myLatitude} lng={state.myLongtitude} zoom={state.zoom}/>
+              
         </div>
         <div>
             <div>
             <p>{myLoc ? 'Information about Your location' : 'Information about last Search'}</p>
             {   
-                state.newIp || myLoc
-                ? state.userLocation.map((el, index) => (
+            
+                myLoc
+                ? state.newIp === '' && state.userLocation.map((el, index) => (
                     index === 0 && <div key={index}>
                         <p className={styles.App__Container__Content__line}>IP: <span>{el.myIp}</span></p>
                         <p className={styles.App__Container__Content__line}>Country: <span>{el.myCountry}</span></p>
@@ -23,7 +25,14 @@ const UserLocationIP = ({state, myLoc}) => {
                         <p className={styles.App__Container__Content__line}>City: <span>{el.myCity}</span></p>
                     </div>
                 ))
-                : <div></div>
+                : state.newIp != '' && state.userLocation.map((el, index) => (
+                    index === 0 && <div key={index}>
+                        <p className={styles.App__Container__Content__line}>IP: <span>{el.myIp}</span></p>
+                        <p className={styles.App__Container__Content__line}>Country: <span>{el.myCountry}</span></p>
+                        <p className={styles.App__Container__Content__line}>Flag: <span>{el.myCountryCode ? <ReactCountryFlag countryCode={el.myCountryCode}/> : '---------'}</span></p>
+                        <p className={styles.App__Container__Content__line}>City: <span>{el.myCity}</span></p>
+                    </div>
+                ))
             }
             
 

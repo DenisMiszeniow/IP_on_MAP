@@ -5,5 +5,5 @@
     overflow: visible;
 }
 .map div {
-    background-color: transparent;
+    background-color: transparent!important;
 }

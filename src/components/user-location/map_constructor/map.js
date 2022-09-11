@@ -5,14 +5,14 @@ import styles from './maps.module.css'
 
 const Map = (props) => {
 
-const center = {lat: props.lat, lng: props.lng}
+  const center = {lat: props.lat, lng: props.lng}
 
-const { isLoaded } = useJsApiLoader({
+  const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: "AIzaSyB_wiXGW2a3kMYvRSP-U5Q3R-o9wWrUXtM"
   })
 
-const [map, setMap] = useState(null)
+  const [map, setMap] = useState(null)
 
 const onLoad = useCallback(function callback(map) {
   const bounds = new window.google.maps.LatLngBounds(center)
@@ -29,9 +29,7 @@ const onUnmount = useCallback(function callback(map) {
         mapContainerClassName={styles.map}
         center={center}
         onLoad={onLoad}
-        
         onUnmount={onUnmount}
-        
       >
         {}
         <Marker position={{lat: props.lat, lng: props.lng}}/>

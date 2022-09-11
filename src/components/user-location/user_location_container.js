@@ -3,6 +3,7 @@ import UserLocationIP from "./user_location"
 import axios from "axios"
 import SearchingForm from "./searching_form/searching_form"
 import ListOfSearch from "./searching_list/searching_list"
+import styles from './user_location.module.css'
 
 const UserLocationIpContainer = () => {  
 const [state, setState] = useState (
@@ -12,18 +13,15 @@ const [state, setState] = useState (
         myLatitude: 0,
         myLongtitude: 0,
         newIp: '',
+        text: '',
         userRequest:[]
     }
   )
-
-  const [text, setText] = useState('')
-  console.log(state)
-  console.log(text)
   
   useEffect(
     () => {
       axios
-        .get(`http://api.ipstack.com/${state.newIp ? state.newIp : 'check'}?access_key=b1b1f92983f5893c53ffa1816c5a48b`)
+        .get(`http://api.ipstack.com/${state.newIp ? state.newIp : 'check'}?access_key=0c473645023439454b2f0c4a23fc779b`)
         .then(response => {
             const myNewData = response.data
             const newState = {...state}
@@ -39,7 +37,6 @@ const [state, setState] = useState (
                         }
                     )
                     newState.userRequest.unshift(newState.newIp)
-                    setText('')
                     newState.myLatitude = myNewData.latitude
                     newState.myLongtitude = myNewData.longitude
             } else {
@@ -57,27 +54,27 @@ const [state, setState] = useState (
             }
             newState.userRequest.unshift(newState.newIp)
             setState(newState)
-            console.log(response)
-            console.log(state)
+            console.log(myNewData)
             }
         )
         .catch(error => {
-            console.log('wrong IP')
+            console.error(error)
         })
     }, [state.newIp])
+
     return <>
-    <div className='App__LeftBar'>
+    <div className={styles.App__LeftBar}>
         <ListOfSearch state={state} />
     </div>
-    <div className='App__Container'>
-        <div className='App__Container__Content'>
-            <UserLocationIP state={state} myLoc={true} lat={state.myLatitude} lng={state.myLongtitude}/>
+    <div className={styles.App__Container}>
+        <div className={styles.App__Container__Content}>
+            <UserLocationIP state={state} myLoc={true}/>
         </div>
-        <div className='App__Container__Form'>
-            <SearchingForm setText={setText} text={text} setState={setState} state={state}/>
+        <div className={styles.App__Container__Form}>
+            <SearchingForm setState={setState} state={state}/>
         </div>
-        <div className='App__Container__Content'>
-            <UserLocationIP state={state} lat={state.myLatitude} lng={state.myLongtitude}/>
+        <div className={styles.App__Container__Content}>
+            <UserLocationIP state={state}/>
         </div>
     </div>
     </>

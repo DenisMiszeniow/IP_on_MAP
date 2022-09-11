@@ -1,13 +1,10 @@
 
-
-
 const SearchingForm = (props) => {
-
     const onHandlerChange = (event) => {
-        props.setText(event.target.value)
+        props.setState({...props.state, text: event.target.value})
     }
     const onHandlerClick = () => {
-        props.setState({...props.state, newIp: props.text})
+        props.setState({...props.state, newIp: props.state.text})
     }
     return (
         <>
