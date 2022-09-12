@@ -20,7 +20,7 @@ const [state, setState] = useState (
   
   useEffect(
     () => {
-      axios
+      (state.newIp || props.myLoc) && axios
         .get(`http://api.ipstack.com/${state.newIp ? state.newIp : 'check'}?access_key=1166efc6e51bb0ee260f0a48193787b5`)
         .then(response => {
             const myNewData = response.data
@@ -53,6 +53,7 @@ const [state, setState] = useState (
                 newState.userLocation.unshift(newUserLocationWrongIp)
             }
             newState.userRequest.unshift(newState.newIp)
+            console.log (myNewData)
             setState(newState)
             }
         )
