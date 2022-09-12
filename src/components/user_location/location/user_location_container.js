@@ -53,7 +53,6 @@ const [state, setState] = useState (
                 newState.userLocation.unshift(newUserLocationWrongIp)
             }
             newState.userRequest.unshift(newState.newIp)
-            console.log (myNewData)
             setState(newState)
             }
         )
