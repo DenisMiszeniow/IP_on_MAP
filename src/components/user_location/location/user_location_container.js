@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import UserLocationIP from "./user_location"
 import axios from "axios"
 import SearchingForm from "../searching_form/searching_form"
-import styles from './user_location.module.css'
+
 import ListOfSearch from "../searching_list/searching_list"
 
 const UserLocationIpContainer = (props) => {  
@@ -21,7 +21,7 @@ const [state, setState] = useState (
   useEffect(
     () => {
       (state.newIp || props.myLoc) && axios
-        .get(`http://api.ipstack.com/${state.newIp ? state.newIp : 'check'}?access_key=1166efc6e51bb0ee260f0a48193787b5`)
+        .get(`http://api.ipstack.com/${state.newIp ? state.newIp : 'check'}?access_key=APIKEY`)
         .then(response => {
             const myNewData = response.data
             const newState = {...state}
